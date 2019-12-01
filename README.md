@@ -85,4 +85,4 @@ Results in console
 `npm run test:bdd`
 
 Results in html
-`lerna run test:bdd:html`
+`npm run test:bdd:html`
