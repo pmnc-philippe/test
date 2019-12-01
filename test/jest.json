@@ -1,0 +1,32 @@
+{
+  "rootDir": "../",
+  "testPathIgnorePatterns": ["/node_modules/", "/target/"],
+  "testMatch": ["<rootDir>/src/**/__tests__/**/*-unit-test.js"],
+  "transform": {
+    "^.+\\.m?js$": "./babel.jestTransformer"
+  },
+  "transformIgnorePatterns": ["/node_modules(?!/storybook)/"],
+  "moduleNameMapper": {},
+  "moduleDirectories": ["node_modules", "src", "test"],
+  "verbose": true,
+  "bail": false,
+  "globals": {
+    "__DEV__": true,
+    "__TESTS__": true,
+    "__webpack_public_path__": "/"
+  },
+  "setupFiles": ["<rootDir>/test/jestMockConfig.js"],
+  "automock": false,
+  "unmockedModulePathPatterns": [
+    "<rootDir>/node_modules/react/",
+    "<rootDir>/node_modules/lodash/",
+    "<rootDir>/node_modules/material-ui/",
+    "<rootDir>/node_modules/react-dom/",
+    "<rootDir>/node_modules/enzyme/",
+    "<rootDir>/node_modules/debug/",
+    "<rootDir>/node_modules/core-js/",
+    "<rootDir>/node_modules/sinon/",
+    "<rootDir>/node_modules/uuid/",
+    "<rootDir>/node_modules/es6-shim/"
+  ]
+}

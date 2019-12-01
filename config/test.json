@@ -1,0 +1,10 @@
+{
+  "exposedApiEndpoint": "/",
+  "log": { "level": "debug" },
+  "port": 3600,
+  "services": {
+    "eurosport": {
+      "url": "https://eurosportdigital.github.io"
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "name": "root",
+  "private": true,
+  "main": "dist/index.js",
+  "directories": {
+    "dist": "dist",
+    "test": "__tests__"
+  },
+  "files": [ "dist" ],
+  "scripts": {
+    "start": "node_modules/.bin/bnr start",
+    "dev": "npm run clean:dist && npm run build && npm run debug",
+    "debug": "node_modules/.bin/bnr debug",
+    "debug:break": "./node_modules/.bin/bnr debug:break",
+    "build": "node_modules/.bin/babel src --out-dir dist --source-maps --root-mode upward --ignore **/__tests__/**/*-test.js",
+    "clean:dist": "node_modules/.bin/rimraf ./dist",
+    "eslint": "node_modules/.bin/eslint --format ./node_modules/eslint-friendly-formatter --fix ./src/",
+    "test:unit": "./node_modules/.bin/bnr test:unit",
+    "debug:unit": "./node_modules/.bin/bnr debug:unit",
+    "test:int": "./node_modules/.bin/bnr test:int",
+    "debug:int": "./node_modules/.bin/bnr debug:int",
+    "test:bdd": "./node_modules/.bin/bnr test:bdd",
+    "test:bdd:report": "node_modules/.bin/bnr test:bdd:report",
+    "test:bdd:html": "npm run test:bdd:report && node ./test/cucumberHtml.js"
+  },
+  "betterScripts": {
+    "start": {
+      "command": "node dist/index.js",
+      "env": {
+        "NODE_ENV": "production",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "debug": {
+      "command": "node --inspect dist/index.js",
+      "env": {
+        "NODE_ENV": "development",
+        "TEST": "1",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "debug:break": {
+      "command": "node --inspect-brk dist/server.js",
+      "env": {
+        "NODE_ENV": "development",
+        "TEST": "1",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "test:unit": {
+      "command": "node ./node_modules/jest/bin/jest.js --runInBand --verbose --no-cache --detectOpenHandles --passWithNoTests --config=./test/jest.json ",
+      "env": {
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "debug:unit": {
+      "command": "node --inspect-brk ./node_modules/jest/bin/jest.js  --runInBand --verbose --no-cache --detectOpenHandles --passWithNoTests --config=./test/jest.json ",
+      "env": {
+        "NODE_CONFIG_ENV": "test",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "test:int": {
+      "command": "node ./node_modules/jest/bin/jest.js  --runInBand --verbose --no-cache --detectOpenHandles --passWithNoTests --config=./test/jest-int.json ",
+      "env": {
+        "NODE_CONFIG_ENV": "test",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "debug:int": {
+      "command": "node --inspect-brk ./node_modules/ jest/bin/jest.js  --runInBand --verbose --no-cache --detectOpenHandles --passWithNoTests --config=./test/jest-int.json ",
+      "env": {
+        "NODE_CONFIG_ENV": "test",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "test:bdd": {
+      "command": "node node_modules/cucumber/bin/cucumber-js src/**/*.feature -r src/**/__steps__/*.js -f node_modules/cucumber-pretty --exit --require-module @babel/register",
+      "env": {
+        "SERVER_URL": "http://localhost:3600",
+        "ENDPOINT": "",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    },
+    "test:bdd:report": {
+      "command": "node node_modules/cucumber/bin/cucumber-js  src/**/*.feature -r src/**/__steps__/*.js  -f json:reports/bdd/test-report.json --exit --require-module @babel/register",
+      "env": {
+        "SERVER_URL": "http://localhost:3600",
+        "ENDPOINT": "",
+        "REPORT_FILE": "json:reports/bdd/test-report.json",
+        "NODE_CONFIG_DIR": "./config",
+        "DEBUG": "test:*"
+      }
+    }
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.7.4",
+    "config": "^3.2.4",
+    "express": "^4.17.1",
+    "fs": "^0.0.2",
+    "glob": "^7.1.6",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/generator": "^7.7.4",
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/node": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@babel/plugin-proposal-export-default-from": "^7.7.4",
+    "@babel/plugin-proposal-export-namespace-from": "^7.7.4",
+    "@babel/plugin-proposal-function-sent": "^7.7.4",
+    "@babel/plugin-proposal-json-strings": "^7.7.4",
+    "@babel/plugin-proposal-numeric-separator": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/plugin-proposal-throw-expressions": "^7.7.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-syntax-import-meta": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.4",
+    "@babel/plugin-transform-template-literals": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "@babel/runtime": "^7.7.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-add-filehash": "^6.10.0",
+    "babel-plugin-dynamic-import-node-babel-7": "^2.0.7",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "better-npm-run": "^0.1.1",
+    "conventional-changelog-cli": "^2.0.28",
+    "cucumber": "^6.0.5",
+    "cucumber-html-reporter": "^5.0.2",
+    "cucumber-pretty": "^6.0.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-formatter-pretty": "^3.0.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-lerna": "^1.1.0",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.1.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-mocha": "^6.2.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "fetch-mock": "^8.0.0",
+    "husky": "^3.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
+    "jest-date-mock": "^1.0.7",
+    "jest-fetch-mock": "^2.1.2",
+    "jsdom": "^15.2.1",
+    "leasot": "^9.3.0",
+    "mockdate": "^2.0.5",
+    "multiple-cucumber-html-reporter": "^1.13.1",
+    "nodemon": "^2.0.1",
+    "npm-check-updates": "^3.2.2",
+    "npm-install-peers": "^1.2.1",
+    "require-context": "^1.1.0",
+    "rimraf": "^3.0.0",
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint",
+      "pre-push": "npm run test:unit"
+    }
+  }
+}

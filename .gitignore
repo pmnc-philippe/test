@@ -1,0 +1,13 @@
+.vscode
+node_modules
+reports/bdd/test*
+*.log
+*.log.*
+dist
+lib
+coverage
+packages/*/reports/
+.scannerwork
+debug.json
+nohup.out
+.nfs*
