@@ -166,7 +166,7 @@
     "jest": "^24.9.0",
     "jest-date-mock": "^1.0.7",
     "jest-fetch-mock": "^2.1.2",
-    "jsdom": "^15.2.1",
+    "jsdom": "^16.5.0",
     "leasot": "^9.3.0",
     "mockdate": "^2.0.5",
     "multiple-cucumber-html-reporter": "^1.13.1",
